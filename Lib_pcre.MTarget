@@ -1,6 +1,20 @@
 ﻿
 %Target Lib_pcre
 {
+	Property
+	{
+		ConfigureContents "@(ReadFile(@('configure.ac'->MakeAbsolute())))"
+		
+		MajorVersionLine "@(ConfigureContents->FindGetLine('*m4_define(pcre_major*'))"
+		MinorVersionLine "@(ConfigureContents->FindGetLine('*m4_define(pcre_minor*'))"
+		PreReleaseLine "@(ConfigureContents->FindGetLine('*m4_define(pcre_prerelease*'))"
+		DateLine "@(ConfigureContents->FindGetLine('*m4_define(pcre_date*'))"
+
+		PcreMajorVersion "@(MajorVersionLine->ParseFormatString('m4_define(pcre_major, [{}])', '{0}'))"
+		PcreMinorVersion "@(MinorVersionLine->ParseFormatString('m4_define(pcre_minor, [{}])', '{0}'))"
+		PcrePreRelease "@(PreReleaseLine->ParseFormatString('m4_define(pcre_prerelease, [{}])', '{0}'))"
+		PcreDate "@(DateLine->ParseFormatString('m4_define(pcre_date, [{}])', '{0}'))"
+	}
 	Compile
 	{
 		!!CompileDialect C
@@ -156,8 +170,32 @@
 			{
 				Compile.Disabled false
 			}
-			%File "pcre_chartables.c"
+			%GenerateFile "pcre_chartables.c"
 			{
+				Property
+				{
+					Name "@('pcre_chartables.c'->MakeAbsolute())"
+					Contents	"#include \"pcre_chartables.c.dist\"\n"
+
+					Executable false
+					UnicodeBOM false
+				}
+				Compile.Disabled false
+			}
+			%GenerateFile "pcre.h"
+			{
+				Property
+				{
+					Name "@('pcre.h'->MakeAbsolute())"
+					Contents "@(ReadFile(@('pcre.h.in'->MakeAbsolute())))"
+					Contents "@(Contents->Replace('@PCRE_MAJOR@', '@(PcreMajorVersion)'))"
+					Contents "@(Contents->Replace('@PCRE_MINOR@', '@(PcreMinorVersion)'))"
+					Contents "@(Contents->Replace('@PCRE_PRERELEASE@', '@(PcrePreRelease)'))"
+					Contents "@(Contents->Replace('@PCRE_DATE@', '@(PcreDate)'))"
+
+					Executable false
+					UnicodeBOM false
+				}
 				Compile.Disabled false
 			}
 			%File "pcre_compile.c"
