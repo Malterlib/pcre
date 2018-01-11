@@ -1,4 +1,4 @@
-﻿
+
 %Target Lib_pcre
 {
 	Property
@@ -19,7 +19,7 @@
 	{
 		!!CompileDialect C
 		PrefixHeader ""
-		SearchPath "@(Builtin.BasePath)/@(Builtin.Function->RelativeBase('.'));@(Compile.SearchPath)"
+		SearchPath "@('.'->MakeAbsolute());@(Compile.SearchPath)"
 		CLanguage "C99"
 		{
 			&
