@@ -37,6 +37,10 @@
 				Compile.Type "C"
 			}
 		}
+		Warnings Minimal
+		{
+			!!PlatformFamily Windows
+		}
 	}
 	Target
 	{
