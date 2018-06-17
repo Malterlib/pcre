@@ -18,6 +18,10 @@
 	Compile
 	{
 		!!CompileDialect C
+		Warnings "Minimal"
+		{
+			!!PlatformFamily "Windows"
+		}
 		PrefixHeader ""
 		SearchPath "@(Builtin.BasePath)/@(Builtin.Function->RelativeBase('.'));@(Compile.SearchPath)"
 		CLanguage "C99"
