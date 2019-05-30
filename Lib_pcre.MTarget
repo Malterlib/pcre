@@ -149,6 +149,8 @@
 								"#define HAVE_ZLIB_H 1\n"\
 								"#define STDC_HEADERS 1\n"\
 								"#pragma warning(disable:4244)\n"\
+								"#pragma warning(disable:4307)\n"\
+								"#pragma warning(disable:4146)\n"\
 								"#pragma warning(disable:4267)\n"
 					{
 						!!PlatformFamily Windows
