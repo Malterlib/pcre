@@ -1,5 +1,5 @@
 
-%Target Lib_pcre
+%Target "Lib_pcre"
 {
 	Property
 	{
@@ -17,7 +17,7 @@
 	}
 	Compile
 	{
-		!!CompileDialect C
+		!!CompileDialect "C"
 		PrefixHeader ""
 		SearchPath "@('.'->MakeAbsolute());@(Compile.SearchPath)"
 		CLanguage "C99"
@@ -41,12 +41,12 @@
 	Target
 	{
 		BaseName "pcre"
-		Type StaticLibrary
+		Type "StaticLibrary"
 		Group "Libraries/SDK"
 	}
-	%Group Source
+	%Group "Source"
 	{
-		%Group Config
+		%Group "Config"
 		{
 			%GenerateFile "config.h"
 			{
@@ -97,7 +97,7 @@
 								"#define HAVE_ZLIB_H 1\n"\
 								"#define STDC_HEADERS 1\n"
 					{
-						!!PlatformFamily OSX
+						!!PlatformFamily "OSX"
 					}
 					
 					Contents	"@(Contents)"\
@@ -125,7 +125,7 @@
 								"#define HAVE_ZLIB_H 1\n"\
 								"#define STDC_HEADERS 1\n"
 					{
-						!!PlatformFamily Linux
+						!!PlatformFamily "Linux"
 					}
 					
 					
@@ -153,7 +153,7 @@
 								"#pragma warning(disable:4146)\n"\
 								"#pragma warning(disable:4267)\n"
 					{
-						!!PlatformFamily Windows
+						!!PlatformFamily "Windows"
 					}			
 					
 					UnixLineEnds "@(ScriptUnixLineEnds)"
