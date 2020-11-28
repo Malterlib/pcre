@@ -24,6 +24,10 @@
  * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#if __clang__
+#pragma clang diagnostic ignored "-Wtautological-overlap-compare"
+#endif
+
 SLJIT_API_FUNC_ATTRIBUTE const char* sljit_get_platform_name(void)
 {
 	return "ARM-64" SLJIT_CPUINFO;
