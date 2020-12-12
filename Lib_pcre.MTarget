@@ -29,7 +29,7 @@
 			}
 		}
 		PreprocessorDefines "HAVE_CONFIG_H;@(Compile.PreprocessorDefines)"
-		PreprocessorDefines "_XOPEN_SOURCE=600;_LARGEFILE_SOURCE;@(Compile.PreprocessorDefines)"
+		PreprocessorDefines "_LARGEFILE_SOURCE;@(Compile.PreprocessorDefines)"
 		{
 			&
 			{
